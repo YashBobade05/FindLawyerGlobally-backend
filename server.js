@@ -4,8 +4,8 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import surveyRoutes from "./routes/surveyRoutes.js";
-import cors from "cors";
-app.use(cors({ origin: "https://yashbobade05.github.io/FindLawyerGlobally/" }));
+
+
 
 dotenv.config();
 connectDB();
@@ -13,7 +13,7 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: "https://yashbobade05.github.io/FindLawyerGlobally/" }));
 app.use(express.json());
 
 // routes
