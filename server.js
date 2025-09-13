@@ -16,7 +16,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173/FindLawyerGlobally/", // local frontend
+    //   "http://localhost:5173/FindLawyerGlobally/", // local frontend
       "https://yashbobade05.github.io/FindLawyerGlobally/", // GitHub Pages frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
