@@ -13,17 +13,36 @@ connectDB();
 const app = express();
 
 // Middleware
+const allowedOrigins = [
+  "http://localhost:5173/FindLawyerGlobally/", // local dev frontend
+  "https://yashbobade05.github.io/FindLawyerGlobally/" // GitHub Pages frontend
+];
+
 app.use(
   cors({
-    origin: [
-    //   "http://localhost:5173/FindLawyerGlobally/", // local frontend
-      "https://yashbobade05.github.io/FindLawyerGlobally/", // GitHub Pages frontend
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(express.json());
+// app.use(
+//   cors({
+//     origin: [
+//     //   "http://localhost:5173/FindLawyerGlobally/", // local frontend
+//       "https://yashbobade05.github.io/FindLawyerGlobally/", // GitHub Pages frontend
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
+// app.use(express.json());
 
 // routes
 app.use("/api/auth", authRoutes);
